@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Pelicula } from '../../../interfaces/pelicula';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { PeliculaService } from '../../../services/pelicula.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-peliculas-list',
@@ -17,7 +18,8 @@ export class PeliculasListComponent {
  *
  */
 constructor(private _peliculaServicio: PeliculaService,
-  private fb:FormBuilder
+  private fb:FormBuilder,
+  private route: Router
 ) {
     this.formularioPelicula=this.fb.group({
       nombre:[""] 
@@ -37,9 +39,12 @@ ngOnInit(): void {
 }
 
 agregarPelicula(){
-  const request:Pelicula = {
+  const request: Pelicula = {
     id:0,
-    titulo: this.formularioPelicula.value.nombre
+    titulo: this.formularioPelicula.value.nombre,
+    encines: false,
+    fechaEstreno: new Date,
+    generosIDs:[]
   }
   this._peliculaServicio.add(request).subscribe({
     next:(data) => {
@@ -58,6 +63,12 @@ eliminarPelicula(pelicula:Pelicula){
       this.listaPeliculas = nuevaLista;
     }
   });
+}
+
+llamarEditarPelicula(id:number){
+  this.route.navigate([`/peliculas/${id}`]);
+
+
 }
 
 }

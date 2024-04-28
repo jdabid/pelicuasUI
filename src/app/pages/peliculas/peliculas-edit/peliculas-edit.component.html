@@ -1,0 +1,115 @@
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Editar Película
+                </div>
+                <div class="card-body">
+                    <!-- <form [formGroup]="formularioActor"> -->
+                       
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Editar Pelicula" [(ngModel)]="peliculaDetalle.titulo">
+                                <button class="btn btn-primary" type="button"
+                                (click)="editarPelicula()"
+                                >Editar</button>
+                            </div>
+                           
+
+                
+
+                <div class="card text-center">
+                    <div class="card-header">
+                      <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                          <a [ngClass]="estiloGenero" aria-current="true" (click)="cambiarVistaGenero(true)" >Generos</a>
+                        </li>
+                        <li [ngClass]="estiloActor">
+                          <a class="nav-link" (click)="cambiarVistaGenero(false)">Actores</a>
+                        </li>
+                       
+                      </ul>
+                    </div>
+
+                    <div class="card-body">
+                     
+                        <div *ngIf="mostrarVistaGeneros">
+                            
+                            <ul class="list-group">
+                                <h5 class="card-title">Géneros</h5>
+                                <p *ngIf="peliculaDetalle?.generos?.length==0">La película no tiene géneros asociados</p>
+                                <li class="list-group-item" *ngFor="let genero of peliculaDetalle?.generos">
+                                <div class="d-flex justify-content-between">
+                                    <label>{{genero?.nombre}}</label>
+                                    <button class="btn btn-danger btn-sm" type="button"
+                                    (click)="borrarGeneroPelicula(genero)"
+                                    >
+                                    -
+                                </button>                        
+                                </div>
+                                </li>
+                            </ul>
+                            <ul class="list-group">
+                                <h5 class="card-title">Agregar Géneros</h5>
+                                <li class="list-group-item" *ngFor="let genero of listaGeneros">
+                                <div class="d-flex justify-content-between">
+                                    <label>{{genero?.nombre}}</label>
+                                    <button class="btn btn-success btn-sm" type="button"
+                                    (click)="agregarGeneroPelicula(genero)"
+                                    >
+                                    +
+                                </button>                        
+                                </div>
+                                </li>
+                            </ul>
+                    </div>
+
+
+                    <div *ngIf="!mostrarVistaGeneros">
+
+                        <ul class="list-group">
+                            <h5 class="card-title">Actores</h5>
+                            <p *ngIf="peliculaDetalle?.actores?.length==0">La película no tiene actores asociados</p>
+                            <li class="list-group-item" *ngFor="let actordetalle of peliculaDetalle?.actores">
+                            <div class="d-flex justify-content-between">
+                                <label>{{actordetalle?.nombrePersona}}</label>
+        
+        
+                                <input type="text" class="form-control" placeholder="Personaje" [(ngModel)]="actordetalle.personaje" >
+        
+                                <button class="btn btn-danger btn-sm" type="button"
+                                (click)="borrarActorPelicula(actordetalle)"
+                                >
+                                -
+                            </button>
+                                        
+                            </div>
+                            </li>
+                        </ul>
+        
+                        <ul class="list-group">
+                            <h5 class="card-title">Agregar Actores</h5>
+                            <li class="list-group-item" *ngFor="let actordetalle of listaActores">
+                            <div class="d-flex justify-content-between">
+                                <label>{{actordetalle?.nombre}}</label>
+        
+                                <button class="btn btn-success btn-sm" type="button"
+                                (click)="agregarActorPelicula(actordetalle)"
+                                >
+                                +
+                            </button>
+                                        
+                            </div>
+                            </li>
+                        </ul>
+        
+                    </div>
+
+
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

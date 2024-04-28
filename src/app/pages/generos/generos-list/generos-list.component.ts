@@ -27,6 +27,9 @@ export class GenerosListComponent {
     this._generoServicio.getList().subscribe({
         next:(data) => {
           this.listaGeneros = data;
+        },
+        error:(err)=>{
+          alert('Se ha producido un error: ' + err?.message);
         }
       });
   }
@@ -46,6 +49,9 @@ export class GenerosListComponent {
         this.formularioGenero.patchValue({
           nombre: ""
         })
+      },
+      error:(err)=>{
+        alert('Se ha producido un error: ' + err?.message);
       }
     });
   }

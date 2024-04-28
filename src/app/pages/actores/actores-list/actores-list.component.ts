@@ -26,7 +26,10 @@ export class ActoresListComponent {
     this._actorServicio.getList().subscribe({
         next:(data) => {
           this.listaActores = data;
-        }
+        },
+      error:(err)=>{
+        alert('Se ha producido un error: ' + err?.message);
+      }
       });
   }
 
@@ -44,7 +47,10 @@ export class ActoresListComponent {
         this.listaActores.push(data);
         this.formularioActor.patchValue({
           nombre: ""
-        })
+        });
+      },
+      error:(err)=>{
+        alert('Se ha producido un error: ' + err?.message);
       }
     });
   }
@@ -54,6 +60,9 @@ export class ActoresListComponent {
       next:(data) => {
         const nuevaLista = this.listaActores.filter(item => item.id!= actor.id)
         this.listaActores = nuevaLista;
+      },
+      error:(err)=>{
+        alert('Se ha producido un error: ' + err?.message);
       }
     });
   }
