@@ -1,0 +1,36 @@
+<div class="container mt-5 pt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-xl-4 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    Lsta de generos
+                </div>
+                <div class="card-body">
+                    <!-- <form [formGroup]="formularioActor"> -->
+                        <form [formGroup]="formularioGenero">
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" placeholder="Ingresar nuevo genero" formControlName="nombre">
+                                <button class="btn btn-primary" type="button"[disabled]="formularioGenero.invalid"
+                                (click)="agregarGenero()"
+                                >Agregar</button>
+                            </div>
+                            </form>
+
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let genero of listaGeneros">
+                    <div class="d-flex justify-content-between">
+                        <label>{{genero.nombre}}</label>
+                        <button class="btn btn-danger btn-sm" type="button"
+                        (click)="eliminarGenero(genero)"
+                        >
+                        Eliminar
+                    </button>                        
+                    </div>
+                    </li>
+                </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
